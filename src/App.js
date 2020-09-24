@@ -6,16 +6,21 @@ const initialUsers = [
   {id: 2, name: 'Jesús'}
 ]
 
-function App() {
+const App = () => {
   const [users, setUsers] = useState(initialUsers);
   const [text, setText] = useState("");
   const [search, setSearch] = useState("");
+
+  useEffect(()=>{
+    //console.log('App render');
+  });
 
   const handleSearch = () => {
     setSearch(text);
   }
 
-  const handleDelete = useCallback((userId) => {
+  // Función por props a componente memorizado 
+  const handleDelete = useCallback(userId => {
     setUsers(users.filter(user => user.id !== userId))
   }, [users])
 
@@ -34,19 +39,15 @@ function App() {
     })
   ,[search, users]);
 
+  // Función como argumento de un efecto
   const printUsers = useCallback(() => {
     console.log('changed users', users)
   }, [users])
 
-  useEffect(()=>{
-    //console.log('App render');
-  });
-
+  // Funcion printUsers como argumento de un efecto
   useEffect(()=>{
     printUsers();
   }, [users, printUsers]);
-
-
 
   return (
     <div>
