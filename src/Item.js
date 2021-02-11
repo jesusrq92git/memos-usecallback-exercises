@@ -1,10 +1,6 @@
-import React, { memo, useEffect } from "react";
+import React, { memo } from "react";
 
 const Item = memo(props => {
-
-  useEffect(() => {
-    //console.log("Item render " + props.user.name)
-  });
 
   const { user, handleDelete } = props;
   
